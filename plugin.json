@@ -1,0 +1,60 @@
+{
+    "name": "VaporAktion1",
+    "namespace": "VaporAktion1",
+    "type": "integration",
+    "version": "1.0.0",
+    "description": "Aktion 1: Kaufe 3 ELFA Pods und erhalte 1 ELFA Basisgerät gratis. Gerät als echte Position zum Normalpreis + Aktionsgutschein (Festbetrag). Auswahl-Box im Warenkorb von plentyShop LTS.",
+    "shortDescription": {
+        "de": "3 ELFA Pods → 1 ELFA Basisgerät gratis (Box im Warenkorb + Aktionsgutschein)",
+        "en": "3 ELFA Pods → 1 free ELFA device (cart box + promotion coupon)"
+    },
+    "author": "34Devs",
+    "email": "info@34devs.com",
+    "authorIcon": "icon_author_xs.png",
+    "pluginIcon": "icon_plugin_xs.png",
+    "license": "proprietary",
+    "isClosedSource": false,
+    "keywords": [
+        "basket",
+        "gift",
+        "zugabe",
+        "coupon",
+        "aktion"
+    ],
+    "require": {
+        "IO": ">=5.0.0",
+        "Ceres": ">=5.0.0"
+    },
+    "platform": {
+        "php": ">=7.3 <8.5"
+    },
+    "serviceProvider": "VaporAktion1\\Providers\\VaporAktion1ServiceProvider",
+    "containers": [],
+    "dataProviders": [
+        {
+            "key": "VaporAktion1\\Aktion1\\A1ScriptContainer",
+            "name": "Aktion 1: Script (Pflicht)",
+            "description": "Lädt JS/CSS der ELFA-Geräte-Box. Mit Ceres::Script.AfterScriptsLoaded verknüpfen.",
+            "defaultLayoutContainer": "Ceres::Script.AfterScriptsLoaded"
+        },
+        {
+            "key": "VaporAktion1\\Aktion1\\A1BoxContainer",
+            "name": "Aktion 1: Box Warenkorb",
+            "description": "ELFA-Basisgerät-Auswahl auf der Warenkorb-Seite.",
+            "defaultLayoutContainer": "Ceres::Basket.BeforeBasketTotals"
+        },
+        {
+            "key": "VaporAktion1\\Aktion1\\A1BoxVorschauContainer",
+            "name": "Aktion 1: Box Warenkorb-Vorschau",
+            "description": "Kompakte ELFA-Basisgerät-Auswahl in der Warenkorb-Vorschau.",
+            "defaultLayoutContainer": "Ceres::BasketPreview.BeforeBasketTotals"
+        },
+        {
+            "key": "VaporAktion1\\Aktion1\\A1ArtikelBoxContainer",
+            "name": "Aktion 1: Box Artikelseite (optional)",
+            "description": "Hinweis/Auswahl auf der Artikelseite eines ELFA Pods. Mit Ceres::SingleItem.AfterAddToBasket verknüpfen."
+        }
+    ],
+    "dependencies": [],
+    "runOnBuild": []
+}
